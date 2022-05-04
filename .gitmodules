@@ -1,0 +1,6 @@
+[submodule "controlcoin-back"]
+	path = controlcoin-back
+	url = https://github.com/castroneto/controlcoin-back.git
+[submodule "controlcoin-front"]
+	path = controlcoin-front
+	url = https://github.com/castroneto/controlcoin-front.git
