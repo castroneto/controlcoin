@@ -1,0 +1,40 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: 6Fh2loXm69BID9pD
+      MYSQL_DATABASE: controlcoin_db
+      MYSQL_USER: controlcoin
+      MYSQL_PASSWORD: e7qKkFb7sI6cAtmx
+    ports:
+      - "3306:3306"
+    networks:
+      - controlcoin-network
+
+  front: 
+    build: ./controlcoin-front
+    container_name: front-end
+    ports:
+      - "8000:80"
+    networks:
+      - controlcoin-network
+
+  back: 
+    build: ./controlcoin-back
+    depends_on:
+      - db
+    container_name: back-end
+    restart: on-failure
+    environment:
+      MYSQL_HOST: db
+    ports:
+      - "8080:8080"
+    networks:
+      - controlcoin-network
+
+
+networks: 
+  controlcoin-network:
+    driver: bridge
